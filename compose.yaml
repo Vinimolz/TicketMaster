@@ -1,0 +1,15 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: ticketwizard-db
+    ports:
+      - "5433:5432" # host:container — 5433 avoids conflict with local PostgreSQL on 5432
+    environment:
+      POSTGRES_DB: ${TW_DB}
+      POSTGRES_USER: ${TW_USER}
+      POSTGRES_PASSWORD: ${TW_PASSWORD}
+    volumes:
+      - ticketwizard_pgdata:/var/lib/postgresql/data
+
+volumes:
+  ticketwizard_pgdata:
